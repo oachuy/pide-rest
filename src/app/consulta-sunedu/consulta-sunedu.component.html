@@ -1,0 +1,138 @@
+<section class="panel panel-primary">
+	<header class="panel-heading font-bold">CONSULTA SUNEDU</header>
+</section>
+
+<div class="wrapper" style="text-align: center;">
+  <form class="form-inline" [formGroup]="searchForm">
+    <span class="h4 font-thin">DNI: </span>
+    
+    <input type="text" maxlength="8" formControlName="dni" class="form-control" />
+    <div [hidden]="loading">
+      <a class="btn btn-s-md btn-primary btn-rounded"  (click)="onSubmit();"  [hidden]="loading">
+        <i class="i i-search2 i-lg m-r-sm">Buscar</i>    
+      </a>  
+    </div>
+ 
+    <div [hidden]="loading">{{ dGenerico }}</div>
+
+    <div class="col-lg-2 center-block"> </div>
+  </form>
+</div>
+
+<div style="text-align: center;" *ngIf='loading'>
+  <svg width="15%" height="15%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-eclipse">
+    <path stroke="none" d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50" 
+      fill="rgba(36.23991935483871%,36.23991935483871%,36.23991935483871%,0.463)" transform="rotate(228 50 51)">
+      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 51;360 50 51" 
+        keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+</div>
+
+
+<div class="row" *ngIf='!loading' >
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6">
+    <section class="panel no-border bg-primary lt">
+      <div class="panel-body">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <ol class="stripped-list">
+          <li  *ngFor="let lista of suneduLista">
+            <div class="wrapper m-b">
+                <div class="row m-b">
+                  <div class="col-xs-6">
+                    <small>Abreviatura del T&iacute;tulo</small>
+                    <div class="text-lt font-bold"> {{ lista.abreviaturaTitulo }} </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <small>Fecha de Emisi&oacute;n</small>
+                    <div class="text-lt font-bold"> {{lista.fechaEmision}} </div>
+                  </div>
+                </div>
+
+                <div class="row m-b">
+                  <div class="col-xs-6">
+                    <small>Nombres</small>
+                    <div class="text-lt font-bold"> {{lista.nombres}} </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <small>Apellido Materno</small>
+                    <div class="text-lt font-bold"> {{lista.apellidoPaterno}} </div>
+                  </div>
+                </div>
+
+                <div class="row m-b">
+                  <div class="col-xs-6">
+                    <small>Apellido Paterno</small>
+                    <div class="text-lt font-bold"> {{lista.apellidoMaterno}} </div>
+                  </div>
+                </div>
+
+                
+
+                <div class="row m-b">
+                  <div class="col-xs-6">
+                    <small>Fecha de Resoluci&oacute;n</small>
+                    <div class="text-lt font-bold"> {{lista.fechaResolucion}} </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <small>N&uacute;mero de Documento</small>
+                    <div class="text-lt font-bold"> {{lista.nroDocumento}} </div>
+                  </div>
+                </div>
+
+                <div class="row m-b">
+                  <div class="col-xs-6">
+                    <small>Pa&iacute;s</small>
+                    <div class="text-lt font-bold"> {{lista.pais}} </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <small>Resoluci&oacute;n</small>
+                    <div class="text-lt font-bold"> {{lista.resolucion}} </div>
+                  </div>
+                </div>
+                
+                <div class="row m-b">
+                  <div class="col-xs-6">
+                    <small>Tipo de Documento</small>
+                    <div class="text-lt font-bold"> {{lista.tipoDocumento}} </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <small>Tipo de Gesti&oacute;n</small>
+                    <div class="text-lt font-bold"> {{lista.tipoGestion}} </div>
+                  </div>
+                </div>
+
+                
+                <div class="row m-b">
+                   <div class="col-xs-6">
+                    <small>Tipo de Instituci&oacute;n</small>
+                    <div class="text-lt font-bold">  {{lista.tipoInstitucion}} </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <small>T&iacute;tulo Profesional</small>
+                    <div class="text-lt font-bold"> {{lista.tituloProfesional}} </div>
+                  </div>
+                </div>
+
+                <div class="row m-b">
+                  <div class="col-xs-6">
+                    <small>Universidad</small>
+                    <div class="text-lt font-bold"> {{lista.universidad}} </div>
+                  </div>
+                </div>
+
+             </div>
+          </li>
+          </ol>
+        </div>
+        <div class="col-xs-1"></div>
+      </div>
+    </section>
+  </div>
+  <div class="col-sm-3">
+  </div>
+
+</div>

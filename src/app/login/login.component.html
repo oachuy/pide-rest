@@ -1,0 +1,128 @@
+<div class="row bg-white">
+
+    <div class="col-xs-0 col-sm-0 col-md-8 col-lg-9 center-block bg-primary hidden-xs bk-login" style="height:100vh;">
+
+    
+
+        <div class="row">
+
+            <div class="col-xs-0 col-sm-0 col-md-12 col-lg-12 center-block hidden-xs" style="padding:10%;padding-top: 20%;">
+                    <!-- <div class="logo-inicio-sesion"></div> -->
+                    <div>
+                        <img src="assets/img/logo.png" />
+                    </div> 
+
+                    <h1 style="color:#fff;font-size:40px;">
+                            <img src="assets/img/LogoConsultasPide.png" /> 
+                    </h1> 
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="col-xs-0 col-sm-0 col-md-4 col-lg-3 bg-white" style="text-align: center;height:100vh;">
+        <div class="row">
+            <div class="col-xs-1 col-sm-0 col-md-1 col-lg-1 "></div>
+            <div class="col-xs-10 col-sm-0 col-md-10 col-lg-10 bg-white ">
+                <div class="formulario-login bg-white ">
+                    <div>
+                        <h1 class="logo-name ">
+                            <i class="flaticon-lock"></i>
+                        </h1>
+               
+                    </div>
+                    <h3>
+                        Iniciar <strong>Sesión</strong>
+                    </h3>
+                    <p>Introduzca usuario y contraseña para iniciar sesión</p>
+
+                    <style>
+
+                        .text-xs-center {
+                            text-align: center;
+                        }
+
+                        .g-recaptcha {
+                            display: inline-block;
+                     
+                        }
+                    
+                        </style>
+
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="form" name="form">
+                        <div class="form-group">
+
+                            <input type="text" id="form:txtUsuario"  maxlength="12" name="form:txtUsuario" formControlName="usuario"
+                                placeholder="Ingrese Usuario" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control ico-user text-box single-line"
+                                [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }" />
+
+                            <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
+                                <div *ngIf="f.usuario.errors.pattern">No se permiten caracteres especiales</div>
+                                <div *ngIf="f.usuario.errors.required">El usuario es obligatorio</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="password" formControlName="contrasenia"   maxlength="30" placeholder="Ingrese Contraseña" id="form:txtPassword"
+                                name="form:txtPassword" class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all form-control ico-pass"
+                                [ngClass]="{ 'is-invalid': submitted && f.contrasenia.errors }" />
+                            <div *ngIf="submitted && f.contrasenia.errors" class="invalid-feedback">
+                                <div *ngIf="f.contrasenia.errors.required">La contraseña es obligatoria</div>
+                                <div *ngIf="f.contrasenia.errors.pattern">No se permiten caracteres especiales</div>
+                            </div>
+                            <div *ngIf="submitted && loginForm.hasError('logeo')" class="invalid-feedback">
+                                <div>{{ error.message }}</div>
+                            </div>
+                            <!-- <div *ngIf="submitted && loginForm.hasError('captcha')" class="invalid-feedback">
+                                <div>Falta activar la validación captcha (No soy un robot)</div>
+                            </div> -->
+                        </div>
+                        <div class="form-group">
+
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " style="text-align:center;">
+
+                                    <!-- <div class="text-xs-center">
+                                            <div  class="invalid-feedback">
+                                                    <div>Click en Casilla de verificación (No soy un robot)</div>
+                                           </div>
+                                        <re-captcha class="g-recaptcha" (resolved)="resolved($event)" siteKey="6LcVfIkUAAAAAHf-4-RiX2N_PldZchpk5LM0K1oy"></re-captcha>
+                                    </div> -->
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <button (click)="submitLogin()" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-primary block full-width m-b btn-login" [disabled]='loading' ><span class="ui-button-text ui-c"><i class="i i-spin fa-spin" *ngIf='loading'></i> INGRESAR</span></button>
+
+                        <!-- <a [routerLink]="['/register']" class="btn btn-link">Registrarme</a> -->
+
+
+
+                        <div class="form-group">
+                            <label class="ui-outputlabel ui-widget" for="btnRecuperar">¿OLVIDASTE TU CONTRASEÑA?</label>
+                            <a [routerLink]='["/recuperar-cuenta"]' class="btn btn-primary" style="width: 100%;">RECUPERAR
+                                CUENTA</a>
+                        </div>
+                    </form>
+
+                    <p class="m-t">
+                        <small></small>
+                    </p>
+                </div>
+
+
+            </div>
+
+            <div class="col-xs-1 col-sm-0 col-md-1 col-lg-1 ">
+            </div>
+
+        </div>
+
+    </div>
+</div>

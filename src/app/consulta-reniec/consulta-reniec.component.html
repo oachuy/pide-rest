@@ -1,0 +1,119 @@
+<section class="panel panel-primary">
+	<header class="panel-heading font-bold">CONSULTA RENIEC</header>
+</section>
+
+<div class="wrapper" style="text-align: center;">
+  <form class="form-inline" [formGroup]="searchForm">
+		<span class="h4 font-thin">DNI: </span>
+		
+		<input type="text" maxlength="8" formControlName="dni" class="form-control" />
+		<div [hidden]="loading">
+		<div style="text-align: center;" *ngIf='!loading'>
+    <a class="btn btn-s-md btn-primary btn-rounded" (click)="onSubmit();">
+      <i class="i i-search2 i-lg m-r-sm">Buscar</i>
+      
+		</a>
+		</div>
+   	 <div>
+      <div [hidden]="loading">{{ deResultado }}</div>
+		</div>
+	</div>
+    <div class="col-lg-2 center-block"> </div>
+  </form>
+</div>
+
+<div class="row" >
+
+<div style="text-align: center;" *ngIf='loading'>
+						<svg width="15%" height="15%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-eclipse">
+							<path stroke="none" d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50" 
+								fill="rgba(36.23991935483871%,36.23991935483871%,36.23991935483871%,0.463)" transform="rotate(228 50 51)">
+								<animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 51;360 50 51" 
+									keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform>
+							</path>
+						</svg>
+					</div>
+
+</div>
+
+<div class="row" *ngIf='!loading' >
+	<div class="col-sm-3">
+	</div>
+	<div class="col-sm-6">
+		<section class="panel no-border bg-primary lt">
+			<div class="panel-body">
+				
+				<div class="col-xs-8">
+					<div class="wrapper m-b">
+					  <div class="row m-b">
+					    <div class="col-xs-6">
+					      <small>Apellido Paterno</small>
+					      <div class="text-lt font-bold">{{ apPrimer }}</div>
+					    </div>
+					    <div class="col-xs-6">
+					      <small>Apellido Materno</small>
+					      <div class="text-lt font-bold">{{ apSegundo }}</div>
+					    </div>
+					  </div>
+					  <div class="row m-b">
+					    <div class="col-xs-6">
+					      <small>Nombres</small>
+					      <div class="text-lt font-bold">{{ prenombres }}</div>
+					    </div>
+					    <div class="col-xs-6">
+					      <small></small>
+					      <div class="text-lt font-bold"></div>
+					    </div>
+					  </div>
+					  <div class="row m-b">
+					    <div class="col-xs-6">
+					      <small>Estado Civil</small>
+					      <div class="text-lt font-bold">{{ estadoCivil }}</div>
+					    </div>
+					    <div class="col-xs-6">
+					      <small>Dirección</small>
+					      <div class="text-lt font-bold">{{ direccion }}</div>
+					    </div>
+					  </div>
+					  <div class="row m-b">
+					    <div class="col-xs-6">
+					      <small>Ubigeo</small>
+					      <div class="text-lt font-bold">{{ ubigeo }}</div>
+					    </div>
+					    <div class="col-xs-6">
+					      <small>Restricción</small>
+					      <div class="text-lt font-bold">{{ restriccion }}</div>
+					    </div>
+					  </div>
+					  
+					</div>
+				</div>
+
+				<div class="col-xs-4">
+					<div class="row m-t-xl">
+					  <div class="col-xs-3 text-right padder-v">
+					    
+					  </div>
+					  <div class="col-xs-6 text-center">
+					    <div class="inline">
+					      <div class="easypiechart" data-percent="75" data-line-width="6" data-bar-color="#fff" data-track-Color="#2796de" data-scale-Color="false" data-size="140" data-line-cap='butt' data-animate="1000">
+					        <div>
+					          <img src="{{ imageData }}" class="dker">
+					          <!-- <img src="assets/images/foto.jpg" class="dker">-->
+					        </div>
+					      </div>
+					      <!-- <div class="h4 m-t m-b-xs font-bold text-lt">John.Smith</div> -->
+					      <small class="text-muted m-b">Fotografía</small>
+					    </div>
+					  </div>
+					  <div class="col-xs-3 padder-v">
+					    
+					  </div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-3">
+	</div>
+</div>

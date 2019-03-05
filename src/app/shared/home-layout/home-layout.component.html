@@ -1,0 +1,44 @@
+<section class="vbox">
+   <header  class=" bg-primary header header-md navbar navbar-fixed-top-xs box-shadow">
+      <app-header></app-header>
+   </header>
+   <section>
+      <section class="hbox stretch">
+         <aside class="bg-black aside-md hidden-print hidden-xs" id="nav">
+            <section class="vbox">
+               <app-local-sidebar *ngIf='sidebarlocal'></app-local-sidebar>
+            </section>
+         </aside>
+         <section id="content">
+            <section class="vbox">
+               <header class="header bg-black b-b b-light" >
+                  <p>
+                     Fecha: {{now|date: "dd/MMM/yyyy HH:mm:ss"}}
+                     <b>
+                        <!-- 11/01/2019 -->
+                     </b>
+                  </p>
+               </header>
+               <section class="scrollable wrapper w-f">
+                  <router-outlet></router-outlet>
+               </section>
+               <footer style="background-color: #0E1E2D;color: #fff; font-size: 11px;" class="footer  b-t b-light">
+                  <div class="row">
+                     <div class="col-sm-4 col-lg-4 col-xs-12">
+                     </div>
+                     <div class="col-sm-4 col-lg-4 col-xs-12" style="text-align: center;">
+                        <br>
+                        <span>Pronied 2019 © Todos los derechos reservados</span>
+                     </div>
+                     <div class="col-sm-4 col-lg-4 col-xs-12" style="text-align: right;">
+                        <br>
+                        <span>Correo: soporte@pronied.gob.pe</span>
+                     </div>
+                  </div>
+               </footer>
+            </section>
+            <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+         </section>
+      </section>
+   </section>
+</section>

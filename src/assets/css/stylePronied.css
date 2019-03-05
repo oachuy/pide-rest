@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700");
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+
+
+body{font-family: "Poppins" !important;color: #676a6c !important;}
+.bk-login{height:100%;background-image:url(../img/bk-login10.jpg);background-position:center center;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;background-color:#fff}
+
+body.bk-login2{background-image:url(../img/bk-login10.jpg);background-position:center center;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;background-color:#fff}
+body.bk-login3{background-image:url(../img/bk-login10.jpg);background-position:center center;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;background-color:#fff}
+
+
+body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav li:hover > .nav-second-level,.mini-navbar .nav li:focus > .nav-second-level{display:block;border-radius:0 2px 2px 0;min-width:140px;height:auto}
+body.mini-navbar .navbar-default .nav > li > .nav-second-level li a{font-size:12px;border-radius:3px}
+
+
+.middle-box{max-width:500px;z-index:100;padding-top:40px;float:right;background:#fff!important;width:auto!important}
+.lockscreen.middle-box{width:200px;padding-top:110px}
+.loginscreen.middle-box{width:300px;padding-left:70px;padding-right:70px;height:100%}
+.title-login{float:left;position:absolute;width:50%;top:30%!important}
+.title-login span{font-size:36px;font-weight:300!important;line-height:40px!important;display:table}
+.btn-login{ width: 100%; color:#fff;font-size:20px !important;padding-top:15px !important;padding-bottom:15px !important;font-weight:300;}
+
+
+.formulario-login h3{font-size:30px;font-weight:100;text-transform:uppercase}
+.formulario-login h3 strong{font-weight:600!important}
+.formulario-login h1 i{margin-top:0!important;font-size:100px}
+.formulario-login form.m-t a{ color: #93c5cd}
+.bk-login3 .loginColumns h2.font-bold{ color: #fff}
+.bk-login3 .loginColumns p{ color: #fff}
+.bk-login3 .loginColumns a small{ color: #93c5cd}
+.bk-login3 .loginColumns a.btn-sm{ color: #93c5cd}
+
+.login3-footer{ color: #fff}
+.btn-enlace{border:1px solid #a2a2a2;color:#a2a2a2;background:transparent}
+.btn-enlace.focus,.btn-enlace:focus,.btn-enlace:hover{border:1px solid #a2a2a2;color:#a2a2a2;background:transparent}
+.display-table{display:table}
+.loginColumns{max-width:800px;margin:0 auto;padding:10% 20px 20px}
+li span.welcome-message{color:#a2a2a2;font-size:18px!important;font-weight:100!important}
+.passwordBox{max-width:460px;margin:0 auto;padding:100px 20px 20px}
+.logo-name{color:#e6e6e6;font-size:180px;font-weight:800;letter-spacing:-10px;margin-bottom:0}
+.middle-box h1{font-size:170px}
+.wrapper .middle-box{margin-top:140px}
+
+
+
+
+.titulo-splash{bottom:30%;color:#ec6c49!important;left:80px;font-size:72px;font-weight:700!important;margin-top:25px;}
+.titulo-splash span{color:#575656!important;font-weight:300!important}
+
+
+.formulario-login .form-group input[type=text] {
+    border: 1px solid #93c5cd;
+    border-radius: 3px;
+    background-color:#fff;
+    font-size: 16px;
+    height: 50px !important;
+    font-weight: 300;
+}
+.formulario-login .form-group input[type=password] {
+    border: 1px solid #93c5cd;
+    border-radius: 3px;
+    background-color:#fff;
+    font-size: 16px;
+    height: 50px !important;
+    font-weight: 300;
+}
+
+/* Show priority 2 at 480px (30em x 16px) */
+@media screen and (min-width: 720px) {
+
+    .logo-inicio-sesion{
+        width: 439px;
+        height: 60px;
+        background-image:url(https://www.pronied.gob.pe/recursospronied/recursos/images/logo2016.png);
+        
+        
+    }
+
+
+
+}
+
+
+
