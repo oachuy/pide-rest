@@ -22,7 +22,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { ConsultaReniecComponent } from './consulta-reniec/consulta-reniec.component';
 import { ConsultaSuneduComponent } from './consulta-sunedu/consulta-sunedu.component';
 import { AntjudicialComponent } from './antjudicial/antjudicial.component';
-
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,8 @@ import { AntjudicialComponent } from './antjudicial/antjudicial.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule, NgbPaginationModule, NgbAlertModule,
-    RecaptchaModule
+    RecaptchaModule,
+    HighchartsChartModule
   ],
 
   entryComponents: [

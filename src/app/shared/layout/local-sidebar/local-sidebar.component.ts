@@ -6,8 +6,6 @@ import { ConsultaReniecComponent} from '../../../consulta-reniec/consulta-reniec
 import { ConsultaSuneduComponent} from '../../../consulta-sunedu/consulta-sunedu.component';
 import { Router } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-local-sidebar',
   templateUrl: './local-sidebar.component.html',
@@ -17,22 +15,20 @@ export class LocalSidebarComponent implements OnInit {
 
 	nombreCompleto: string;
 	sesion: Session;
-    links: Array<{ text: string, path: string }>=[];
+  links: Array<{ text: string, path: string }>=[];
 
-    constructor(private storageService: StorageService, private router: Router) {
+  constructor(private storageService: StorageService, private router: Router) {
 
-    }
+  }
      
 	ngOnInit() {
 
 		this.sesion = this.storageService.getCurrentSession();
 		this.nombreCompleto = this.sesion.nombreCompleto.split(" ")[0];
 
-        for (let i =0; i < this.sesion.opciones.length ; i++ ){
+    for (let i =0; i < this.sesion.opciones.length ; i++ ){
 		  this.links.push({ text: this.sesion.opciones[i].opcdescripcion, path: this.sesion.opciones[i].opcenlace});
-        }
-
-
+    }
 	}
 
 	logout(): void {

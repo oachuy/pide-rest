@@ -1,7 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HomeService } from '../core/services/home.service';
-import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { Constantes } from "../core/constantes";
+import { HttpClient } from '@angular/common/http';
+import * as Highcharts from 'highcharts';
+
+import {HomeService} from '../core/services/home.service';
+//import  * as drilldown from 'highcharts/modules/drilldown.src.js'
+//drilldown(Highcharts)
+import  More from 'highcharts/highcharts-more';
+More(Highcharts);
+import Drilldown from 'highcharts/modules/drilldown';
+Drilldown(Highcharts);
+// Load the exporting module.
+import Exporting from 'highcharts/modules/exporting';
+// Initialize exporting module.
+Exporting(Highcharts);
 
 @Component({
   selector: 'app-home',
@@ -9,28 +22,120 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  searchForm: FormGroup;
-  SRFT: number;
-  SRDG: number;
 
-  LSR: number;
-  SVFT: number;
-  SVDG: number;
 
-  AP: number;
-  BP: number;
-  DBP: number;
-  TP: number;
+  loading = false;
+  restItemsUrl = Constantes.getRestItemsUrl() +'CantidadxMetodoxSistema';
+  Highcharts = Highcharts;
+  
+  mydataResCantxMetodoxSistema  =[];
+  mydataResCantxMetodo =[];
+  mydataDd =[];
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private homeService: HomeService,
-    private router: Router
-    ) { }
+  public responseCantidadxMetodo: any;
+  public responseCantidadxMetodoxSistema: any;
+  updateFlag  = false;
 
-    ngOnInit() {
-        
+  chartOptions :any = {
+    title: {
+      text: 'Número de consultas en últimos 30 días'
+    },
+      subtitle: {
+        text: 'Consultas realizadas por sistema y método'
+      },
+      chart: {
+        type: 'column'
+      },
+      xAxis: {
+        type :'category'
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+              enabled: true,
+              format: '{point.y:.1f}%'
+          }
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+      },
+      series:[],
+      "drilldown": {
+        "series": []
+      }
+            
+  };
+
+
+  constructor(private http: HttpClient, private homeService : HomeService){
+    
   }
 
+  ngOnInit() {
 
+      this.loading= true;
+      this.homeService.getDashboardService()
+        .subscribe(restItems => 
+         {
+          this.responseCantidadxMetodo = restItems[0];
+          this.responseCantidadxMetodoxSistema= restItems[1];
+
+          for(let i = 0; i < this.responseCantidadxMetodo.cntMetodoList.length ; i++){
+            this.mydataResCantxMetodo[i] = {
+             "name": this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado,
+             "y": this.responseCantidadxMetodo.cntMetodoList[i].cantidad,
+             "drilldown" : this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado
+            }
+           
+               for(let j = 0; j < this.responseCantidadxMetodoxSistema.cntMetList.length ; j++){
+                 let z=0;
+                 console.log(this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado );
+                 console.log(this.responseCantidadxMetodoxSistema.cntMetList[j].metodo);
+                 if(this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado ==this.responseCantidadxMetodoxSistema.cntMetList[j].metodo){
+                    
+                  this.mydataDd [z] = [
+                     
+                       this.responseCantidadxMetodoxSistema.cntMetList[j].descripcion,
+                      this.responseCantidadxMetodoxSistema.cntMetList[j].cantidad
+                 
+                  ];
+                  z++;
+                 }
+               }
+            
+            this.mydataResCantxMetodoxSistema[i] = {
+                "name": this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado,
+                "id" : this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado,
+                "data": this.mydataDd 
+            }
+            this.mydataDd=[];
+          }
+
+          console.log(JSON.stringify(this.mydataResCantxMetodoxSistema));
+            setTimeout(()=>this.updateCharts(),1000);
+            this.loading= false;
+          })  
+  }
+
+  updateCharts(){
+    this.chartOptions.series = [{
+      "name": "Servicios",
+      "colorByPoint": true,
+      "data": this.mydataResCantxMetodo
+        
+    }] ;
+
+    this.chartOptions.drilldown.series= this.mydataResCantxMetodoxSistema;
+    
+    
+
+    console.log(JSON.stringify(this.chartOptions));
+    this.updateFlag = true;
+  }
 }
