@@ -39,7 +39,6 @@ export class ConsultaSuneduComponent implements OnInit {
           this.loading= false;
           this.restItems = restItems;
           if(this.restItems.suneduRespuesta){
-            console.log(this.restItems.suneduRespuesta);
             this.cGenerico = this.restItems.suneduRespuesta.cGenerico;
             this.dGenerico = this.restItems.suneduRespuesta.dGenerico;
             
@@ -53,14 +52,15 @@ export class ConsultaSuneduComponent implements OnInit {
                this.suneduLista=[];
             }
           }else{
-             this.dGenerico = 'Error PIDE, repetir la búsqueda';
+             this.dGenerico = 'Error PIDE, repetir la búsqueda. ' + this.restItems.descripcion;
           }
         });
   }
 
   restItemsServiceGetRestItems(dni) {
    
-    const params = new  HttpParams().set('dni', dni).set('sistema',Constantes.getIdSistema());
+    const params = new  HttpParams().set('dni', dni)
+                                    .set('sistema',Constantes.getIdSistema());
     return this.http
       .get<any[]>(this.restItemsUrl,{params})
       .pipe(map(data => data));

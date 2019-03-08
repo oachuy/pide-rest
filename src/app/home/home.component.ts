@@ -38,10 +38,10 @@ export class HomeComponent implements OnInit {
 
   chartOptions :any = {
     title: {
-      text: 'Número de consultas en últimos 30 días'
+      text: 'Consultas realizadas'
     },
       subtitle: {
-        text: 'Consultas realizadas por sistema y método'
+        text: 'Número de consultas en últimos 30 días'
       },
       chart: {
         type: 'column'
@@ -57,13 +57,13 @@ export class HomeComponent implements OnInit {
           borderWidth: 0,
           dataLabels: {
               enabled: true,
-              format: '{point.y:.1f}%'
+              format: '{point.y:.0f}'
           }
         }
       },
       tooltip: {
         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b>'
       },
       series:[],
       "drilldown": {
@@ -118,24 +118,19 @@ export class HomeComponent implements OnInit {
           }
 
           console.log(JSON.stringify(this.mydataResCantxMetodoxSistema));
-            setTimeout(()=>this.updateCharts(),1000);
+            setTimeout(()=>this.updateCharts(),500);
             this.loading= false;
           })  
   }
 
   updateCharts(){
     this.chartOptions.series = [{
-      "name": "Servicios",
+      "name": "Método",
       "colorByPoint": true,
       "data": this.mydataResCantxMetodo
         
     }] ;
-
     this.chartOptions.drilldown.series= this.mydataResCantxMetodoxSistema;
-    
-    
-
-    console.log(JSON.stringify(this.chartOptions));
     this.updateFlag = true;
   }
 }

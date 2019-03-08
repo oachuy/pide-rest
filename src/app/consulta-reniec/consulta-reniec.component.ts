@@ -44,35 +44,36 @@ export class ConsultaReniecComponent implements OnInit {
       .subscribe(
         restItems => {
           this.loading= false;
-          this.restItems = restItems;           
-          this.coResultado= this.restItems.coResultado;
-          this.deResultado=this.restItems.deResultado;
+          this.restItems = restItems;  
+          if(this.restItems.coResultado) {     
+            this.coResultado= this.restItems.coResultado;
+            this.deResultado=this.restItems.deResultado;
+            if (this.coResultado=='0000'){
+              this.apPrimer = this.restItems.reniecDatosPersona.apPrimer;
+              this.apSegundo = this.restItems.reniecDatosPersona.apSegundo;
+              this.direccion = this.restItems.reniecDatosPersona.direccion;
+              this.estadoCivil = this.restItems.reniecDatosPersona.estadoCivil;
 
-          if (this.coResultado=='0000'){
-            this.apPrimer = this.restItems.reniecDatosPersona.apPrimer;
-            this.apSegundo = this.restItems.reniecDatosPersona.apSegundo;
-            this.direccion = this.restItems.reniecDatosPersona.direccion;
-            this.estadoCivil = this.restItems.reniecDatosPersona.estadoCivil;
+              //foto
+              this.imageData = 'data:image/' + 'png' + ';base64,' + this.restItems.reniecDatosPersona.foto;
+              this.prenombres = this.restItems.reniecDatosPersona.prenombres;
+              this.restriccion= this.restItems.reniecDatosPersona.restriccion;
+              this.ubigeo = this.restItems.reniecDatosPersona.ubigeo;
 
-            //foto
-            this.imageData = 'data:image/' + 'png' + ';base64,' + this.restItems.reniecDatosPersona.foto;
-            this.prenombres = this.restItems.reniecDatosPersona.prenombres;
-            this.restriccion= this.restItems.reniecDatosPersona.restriccion;
-            this.ubigeo = this.restItems.reniecDatosPersona.ubigeo;
+            }else{
+              this.apPrimer = null;
+              this.apSegundo = null;
+              this.direccion = null;
+              this.estadoCivil = null;
 
+              //foto
+              this.imageData = null;
+              this.prenombres = null;
+              this.restriccion= null;
+              this.ubigeo = null;
+            }
           }else{
-
-            this.apPrimer = null;
-            this.apSegundo = null;
-            this.direccion = null;
-            this.estadoCivil = null;
-
-            //foto
-            this.imageData = null;
-            this.prenombres = null;
-            this.restriccion= null;
-            this.ubigeo = null;
-            
+            this.deResultado=this.restItems.descripcion;
           }
         }
       )
