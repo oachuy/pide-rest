@@ -22,7 +22,6 @@ export class Session {
     public user : string;
     public usuldap :string;
     public usupersona : string;
-
   constructor( object: any){
 
 

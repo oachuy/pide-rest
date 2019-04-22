@@ -5,12 +5,16 @@ export class Constantes {
 
     public static getRestItemsUrl(): string {
 
-          return 'http://10.40.7.161:8080/ProniedPIDE-0.0.1-SNAPSHOT/';
-          //return "http://localhost:8080/"
+      return 'http://10.40.7.160:8080/PideRest-1.0/';
+      //return "http://localhost:8080/"
     }
     
     public static getIdSistema() : string {
         return '1';
+    }
+
+    public static getIdSistemaGesusu() : string {
+      return '41';
     }
 
 }

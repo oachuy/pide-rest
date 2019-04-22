@@ -18,7 +18,7 @@ export class AuthenticationService {
 	constructor(private http: HttpClient) {}
 	
 	login(loginObj: LoginObject): Observable<Session> {
-	    let params = new HttpParams().set('usuario',loginObj.usuario).set('contrasenia',loginObj.contrasenia).set('idsistema',loginObj.idsistema);
+	    let params = new HttpParams().set('usuario',loginObj.usuario).set('contrasenia',loginObj.contrasenia).set('idsistema',Constantes.getIdSistemaGesusu());
 	    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
 		return this.http.post<Session>(this.basePath + 'login', params.toString(),{headers: headers});
 	}

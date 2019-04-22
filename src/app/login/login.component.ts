@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
         }
     }
     
-    private correctLogin(data: Session){
+    private correctLogin(data: Session){ // falta validar si la respuesta contiene estado: true o false
         this.storageService.setCurrentSession(data);
         this.router.navigate(['/home']);
     }

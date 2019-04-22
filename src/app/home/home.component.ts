@@ -88,39 +88,32 @@ export class HomeComponent implements OnInit {
 
           for(let i = 0; i < this.responseCantidadxMetodo.cntMetodoList.length ; i++){
             this.mydataResCantxMetodo[i] = {
-             "name": this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado,
-             "y": this.responseCantidadxMetodo.cntMetodoList[i].cantidad,
-             "drilldown" : this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado
-            }
-           
-               for(let j = 0; j < this.responseCantidadxMetodoxSistema.cntMetList.length ; j++){
-                 let z=0;
-                 console.log(this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado );
-                 console.log(this.responseCantidadxMetodoxSistema.cntMetList[j].metodo);
+               "name": this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado,
+               "y": this.responseCantidadxMetodo.cntMetodoList[i].cantidad,
+               "drilldown" : this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado
+             }
+             let z=0;
+             for(let j = 0; j < this.responseCantidadxMetodoxSistema.cntMetList.length ; j++){
                  if(this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado ==this.responseCantidadxMetodoxSistema.cntMetList[j].metodo){
-                    
                   this.mydataDd [z] = [
-                     
                        this.responseCantidadxMetodoxSistema.cntMetList[j].descripcion,
                       this.responseCantidadxMetodoxSistema.cntMetList[j].cantidad
-                 
                   ];
                   z++;
                  }
-               }
-            
-            this.mydataResCantxMetodoxSistema[i] = {
+              }
+
+              this.mydataResCantxMetodoxSistema[i] = {
                 "name": this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado,
                 "id" : this.responseCantidadxMetodo.cntMetodoList[i].metodoConsultado,
                 "data": this.mydataDd 
-            }
-            this.mydataDd=[];
+              }
+              this.mydataDd=[];
           }
 
-          console.log(JSON.stringify(this.mydataResCantxMetodoxSistema));
             setTimeout(()=>this.updateCharts(),500);
             this.loading= false;
-          })  
+        })  
   }
 
   updateCharts(){
